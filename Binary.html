@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number System Converter</title>
+    <style>
+        body { font-family: serif, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        input, select { margin: 10px 0; padding: 10px; width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number System Converter</h1>
+        <label for="inputNumber">Enter Number:</label>
+        <input type="text" id="inputNumber" placeholder="Enter number here">
+        
+        <label for="inputBase">From Base:</label>
+        <select id="inputBase">
+            <option value="2">Binary</option>
+            <option value="10">Decimal</option>
+            <option value="8">Octal</option>
+            <option value="16">Hexadecimal</option>
+        </select>
+        
+        <label for="outputBase">To Base:</label>
+        <select id="outputBase">
+            <option value="2">Binary</option>
+            <option value="10">Decimal</option>
+            <option value="8">Octal</option>
+            <option value="16">Hexadecimal</option>
+        </select>
+        
+        <button onclick="convert()">Convert</button>
+        
+        <h2>Result: <span id="result"></span></h2>
+    </div>
+
+    <script>
+        function convert() {
+            const inputNumber = document.getElementById('inputNumber').value;
+            const inputBase = parseInt(document.getElementById('inputBase').value);
+            const outputBase = parseInt(document.getElementById('outputBase').value);
+            
+            if (inputNumber === '') {
+                document.getElementById('result').innerText = 'Please enter a number.';
+                return;
+            }
+            
+            const decimalNumber = parseInt(inputNumber, inputBase);
+            if (isNaN(decimalNumber)) {
+                document.getElementById('result').innerText = 'Invalid number for the selected base.';
+                return;
+            }
+            
+            const result = decimalNumber.toString(outputBase).toUpperCase();
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
